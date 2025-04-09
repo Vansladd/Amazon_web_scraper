@@ -24,6 +24,10 @@ jobs:
         with:
           python-version: '3.9'  # You can change the Python version if needed
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
+        
+
       # Step 3: Install dependencies from requirements.txt
       - name: Install dependencies
         run: |
