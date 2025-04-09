@@ -1,0 +1,38 @@
+name: Python CI Pipeline
+
+# Trigger this workflow on push or pull request to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # This will run on an Ubuntu environment
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'  # You can change the Python version if needed
+
+      # Step 3: Install dependencies from requirements.txt
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+      # Step 4: Run tests with pytest
+      - name: Run tests
+        run: |
+          source venv/bin/activate
+          pytest --maxfail=1 --disable-warnings -q  # Optional flags to make the output clean
