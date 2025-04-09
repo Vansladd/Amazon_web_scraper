@@ -1,16 +1,17 @@
 # 🕸️ Web Scraping ETL Pipeline with Airflow & Streamlit
 
-This project is an end-to-end data engineering pipeline that scrapes product data from Amazon, stores it in a PostgreSQL database, and provides a user-friendly interface for viewing the results using Streamlit.
+This project is an end-to-end data engineering pipeline that scrapes product data from Amazon, stores it in a PostgreSQL database, and provides a user-friendly interface for viewing the results using Streamlit.The pipeline is built using Python, Apache Airflow, and Docker, and incorporates automated testing and continuous integration/deployment (CI/CD).
 
 ## 🚀 Features
 
 - 🔄 **ETL Pipeline** using Apache Airflow
 - 🧲 **Web Scraping** with BeautifulSoup and requests
 - 🗄️ **Data Storage** in PostgreSQL
-- 🧪 **Streamlit App** to visualize and explore the scraped data
+- 🖥️ **Streamlit App** to visualize and explore the scraped data
 - 🐳 **Dockerized Environment** for easy setup
+- 🧪 **Unit and Integration Tests with Pytest** to ensure the reliability of the pipeline
 - 🔐 **Environment Variables** managed via `.env`
-
+- 🚀 **CI/CD Pipeline** using GitHub Actions for automated testing, Docker image building, and deployment
 ---
 
 ## ⚙️ Technologies Used
@@ -53,7 +54,6 @@ Look at .env.example file
 ### 3. Start the Pipeline
 
 ```bash
-
 cd airflow-docker
 docker-compose up --build
 ```
@@ -93,6 +93,22 @@ Table Name: products
 ```bash
 streamlit run streamlit_app/app.py
 ```
+
+## Testing
+Unit Tests
+Unit tests for the core functionality are located in the tests/ directory. These tests verify the correctness of the individual functions and modules.
+
+Run unit tests:
+pytest tests/
+
+## CI/CD Pipeline
+The project includes a CI/CD pipeline powered by GitHub Actions. Every time code is pushed to the main branch or a pull request is made, the following steps occur:
+
+  1.  Code Checkout: The latest code is checked out from the repository.
+
+  2.  Set up Python environment: A virtual environment is set up, and dependencies are installed.
+
+  3.  Run Unit Tests: Unit tests are executed to ensure the core functionality is working correctly.
 
 ### 🚧 Known Issues
 If you're running Airflow for the first time, make sure to initialize the database before running the DAGs.
